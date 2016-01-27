@@ -13,18 +13,18 @@ module Openfire
       private
 
         def build_query(params)
-          "#{build_query_uri.to_s}?#{build_query_params(params)}"
+          "#{build_query_uri}?#{build_query_params(params)}"
         end
 
         def build_query_uri
-          uri = URI.parse(@options[:url])
-          uri.path = File.join(uri.path,config.path)
-          uri
+          URI.parse(@options[:url]).tap do |u|
+            u.path = File.join(u.path, config.path)
+          end
         end
 
         def build_query_params(params)
-          params.merge!(:secret => @options[:secret])
-          params.to_a.map{ |p| "#{p[0]}=#{p[1]}" }.join('&')
+          params.merge!(secret: @options[:secret])
+          params.map{ |k,v| "#{k}=#{v}" }.join('&')
         end
 
         def submit_request(params)

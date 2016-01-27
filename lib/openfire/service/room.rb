@@ -3,14 +3,14 @@ module Openfire
     class Room < Base
 
       config.path = 'plugins/roomService/roomservice'
-      config.exceptions = [
-        'RoomServiceDisabled',
-        'RequestNotAuthorised',
-        'NotAllowedException',
-        'IllegalArgumentException',
-        'AlreadyExistsException',
-        'NotFoundException'
-      ]
+      config.exceptions = %w(
+        RoomServiceDisabled
+        RequestNotAuthorised
+        NotAllowedException
+        IllegalArgumentException
+        AlreadyExistsException
+        NotFoundException
+      )
 
       class HTTPException < StandardError; end
       class InvalidResponseException < StandardError; end

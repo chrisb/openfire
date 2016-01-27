@@ -3,13 +3,13 @@ module Openfire
     class Group < Base
 
       config.path = 'plugins/groupService/groupservice'
-      config.exceptions = [
-        'GroupServiceDisabled',
-        'RequestNotAuthorised',
-        'IllegalArgumentException',
-        'GroupNotFoundException',
-        'GroupAlreadyExistsException'
-      ]
+      config.exceptions = %w(
+        GroupServiceDisabled
+        RequestNotAuthorised
+        IllegalArgumentException
+        GroupNotFoundException
+        GroupAlreadyExistsException
+      )
 
       class HTTPException < StandardError; end
       class InvalidResponseException < StandardError; end
